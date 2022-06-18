@@ -57,8 +57,6 @@
 
                                                 <StackPanel Orientation="Horizontal" Background="Transparent">
                                                     <TextBlock x:Name="LastMessage"  Foreground="{TemplateBinding Foreground}" Height="20" Width="155" VerticalAlignment="Top" TextWrapping="Wrap">Keannna</TextBlock>
-
-                                                    <materialDesign:Badged Badge="3" Margin="10 0 0 0" VerticalAlignment="Center" BadgeForeground="{TemplateBinding Background}" BadgeBackground="{TemplateBinding Foreground}"/>
                                                 </StackPanel>
                                             </StackPanel>
 
