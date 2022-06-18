@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTelegram"
-        mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" ResizeMode="NoResize" Background="{DynamicResource MainColor}" WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,12 +13,12 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel  Orientation="Vertical">
+        <StackPanel  Orientation="Vertical" >
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <!--#region  Menu & Search-->
 
-                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Foreground="{DynamicResource Count_Muted}" />
 
                 <Grid Margin="20 0 0 0" Width="200">
                     <Grid.ColumnDefinitions>
@@ -26,98 +26,24 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
                     <Button Style="{DynamicResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                        <materialDesign:PackIcon Kind="Search" Opacity=".56" Foreground="White"/>
                     </Button>
-                    <TextBox Grid.Column="1" Style="{StaticResource MaterialDesignFilledTextBox}"  VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" Width="130" MaxWidth="400" materialDesign:HintAssist.Hint="Search"
-                     IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" />
+                    <TextBox Grid.Column="1" Style="{StaticResource MaterialDesignFilledTextBox}"  VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" Width="170" MaxWidth="400" materialDesign:HintAssist.Hint="Search" Foreground="White" Background="{DynamicResource Search}" Height="50" 
+                     IsEnabled="{Binding Path=IsChecked,ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" />
                 </Grid>
                 <!--#endregion-->
             </StackPanel>
-            
+
             <!--#region Listbox-->
-            <ListBox>
-                <ListBox.Items>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-                            <Image Height="50" Width="50" Source="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" />
-                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal" Height="30">
-                                    <TextBlock Text="Kenan" FontWeight="Bold" Width="150"/>
-                                    <TextBlock Text="11:00"  />
-                                </StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="Yusukdhfksjdfjks" Margin="0 10 0 0"/>
-                                    <materialDesign:Badged Grid.Column="1" Badge="3" VerticalAlignment="Center" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-                            <Image Height="50" Width="50" Source="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" />
-                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal" Height="30">
-                                    <TextBlock Text="Kenan" FontWeight="Bold" Width="150"/>
-                                    <TextBlock Text="11:00"  />
-                                </StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="Yusukdhfksjdfjks" Margin="0 10 0 0"/>
-                                    <materialDesign:Badged Grid.Column="1" Badge="3" VerticalAlignment="Center" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-                            <Image Height="50" Width="50" Source="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" />
-                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal" Height="30">
-                                    <TextBlock Text="Kenan" FontWeight="Bold" Width="150"/>
-                                    <TextBlock Text="11:00"  />
-                                </StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="Yusukdhfksjdfjks" Margin="0 10 0 0"/>
-                                    <materialDesign:Badged Grid.Column="1" Badge="3" VerticalAlignment="Center" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-                            <Image Height="50" Width="50" Source="https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png" />
-                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal" Height="30">
-                                    <TextBlock Text="Kenan" FontWeight="Bold" Width="150"/>
-                                    <TextBlock Text="11:00"  />
-                                </StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="Yusukdhfksjdfjks" Margin="0 10 0 0"/>
-                                    <materialDesign:Badged Grid.Column="1" Badge="3" VerticalAlignment="Center" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox.Items>
 
-            </ListBox>
-            <!--#endregion-->
+            <ListView Background="Transparent" Margin="0 10 0 0" ItemContainerStyle="{StaticResource UserCard}" >
 
+                <ListViewItem></ListViewItem>
+                <ListViewItem></ListViewItem>
+                <ListViewItem></ListViewItem>
+                <ListViewItem></ListViewItem>
+                <ListViewItem></ListViewItem>
+            </ListView>
 
         </StackPanel>
     </Grid>
