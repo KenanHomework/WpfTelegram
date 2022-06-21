@@ -20,6 +20,13 @@
                     <SolidColorBrush  x:Key="SelectedFgrnd" >#e8e4f9</SolidColorBrush>
                 </ResourceDictionary>
                 <ResourceDictionary>
+                    <Style x:Key="BlackHoverItem" TargetType="MenuItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsStylusOver" Value="True">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                     <Style x:Key="UserCard" TargetType="ListViewItem">
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True" >

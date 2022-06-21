@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTelegram" ResizeMode="CanResizeWithGrip" WindowStyle="None"
         mc:Ignorable="d"  Background="{DynamicResource MainColor}" WindowStartupLocation="CenterScreen"
-         MinHeight="500" MinWidth="850" Width="850" AllowsTransparency="True">
+         MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=TwoWay}" Width="850" AllowsTransparency="True">
     <DockPanel>
 
         <Border Background="#252525" DockPanel.Dock="Top" Height="25">
@@ -21,7 +21,7 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Foreground="Gray" Margin="2 0" FontWeight="SemiBold" >Telegram</Label>
+                <Label Grid.Column="0" Foreground="Gray" Margin="2 0" FontWeight="SemiBold">Telegram</Label>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="Gray" VerticalAlignment="Center" Content="_" Padding="0 0 0 8" Click="ResizeButton_Click"/>
@@ -31,39 +31,43 @@
                     <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="Gray" FontSize="10" VerticalAlignment="Center" Content="X" FontWeight="Bold" Click="ResizeButton_Click"/>
 
                 </StackPanel>
-
             </Grid>
         </Border>
 
-        <StackPanel  Orientation="Vertical" DockPanel.Dock="Left">
+        <StackPanel Name="LeftBar" Orientation="Vertical" DockPanel.Dock="Left">
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <!--#region  Menu & Search-->
 
-                <Expander Panel.ZIndex="2" ExpandDirection="Left" Background="Transparent"
-                Height="55" Width="100"   Foreground="White" RenderTransformOrigin="0.5,0.5">
-                    <Expander.RenderTransform>
-                        <TransformGroup>
-                            <RotateTransform Angle="-"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Expander.RenderTransform>
-                    <Expander.Header>
-                        <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Foreground="{DynamicResource Secondary}" Margin="50,0,-45,0" RenderTransformOrigin="-2.224,-1.122" />
-                    </Expander.Header>
-                </Expander>
+                <Menu IsMainMenu="True" materialDesign:ShadowAssist.ShadowDepth="Depth5" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Padding="10">
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+
+
+                    <MenuItem  Height="20" Padding="0" Margin="15,0,47,0">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource Secondary}" 
+                                                     Width="20" Height="20" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
 
                 <Grid Margin="20 0 0 0" Panel.ZIndex="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
-                    <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="0">
+
+                    <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="0" VerticalAlignment="Bottom">
                         <materialDesign:PackIcon Kind="Search" Opacity=".56" Foreground="White"/>
                     </Button>
+
                     <TextBox Grid.Column="1" Foreground="White" materialDesign:HintAssist.Hint="Search" 
-                             MinWidth="200"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" />
+                    MinWidth="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" />
+
                 </Grid>
 
                 <!--#endregion-->
@@ -90,7 +94,7 @@
                     ToolTip="MaterialDesignFloatingActionSecondaryLightButton" 
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                     Panel.ZIndex="3"
-                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-70 0 0 0" >
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-70 0 0 5" >
             <materialDesign:PackIcon  Kind="Pencil"/>
         </Button>
 
