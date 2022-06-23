@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WpfTelegram.Data;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using WpfTelegram.Models;
 using System.Windows.Shapes;
+using WpfTelegram.MVVM.ViewModel;
+using WpfTelegram.Pages;
 
 namespace WpfTelegram
 {
@@ -24,26 +27,19 @@ namespace WpfTelegram
     {
 
 
-        public int SizeWindow
-        {
-            get { return (int)GetValue(SizeWindowProperty); }
-            set { SetValue(SizeWindowProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SizeWindow.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SizeWindowProperty =
-            DependencyProperty.Register("SizeWindow", typeof(int), typeof(MainWindow), new PropertyMetadata(0));
-
-
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
-            SizeWindow = 500;
+            var mainVM = new MainVM();
+            mainVM.SizeWindow = 500;
+            DataContext = mainVM;
+            List.ItemsSource = DataGeneral.Chats;
         }
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)
         {
+
+
             if (sender is Button btn)
             {
                 switch (btn.Content.ToString())
@@ -64,6 +60,27 @@ namespace WpfTelegram
                         break;
                 }
             }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void FooterMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = "https://github.com/KenanHomework/WpfTelegram.git";
+            var psi = new System.Diagnostics.ProcessStartInfo();
+            psi.UseShellExecute = true;
+            psi.FileName = uri;
+            System.Diagnostics.Process.Start(psi);
+        }
+
+        private void MenuItemContacts_Click(object sender, RoutedEventArgs e)
+        {
+            var page_ = new ContactsPage();
+            Frame.Navigate(page_);
         }
     }
 }

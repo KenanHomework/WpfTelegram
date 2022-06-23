@@ -9,7 +9,7 @@
          MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=TwoWay}" Width="850" AllowsTransparency="True">
     <DockPanel>
 
-        <Border Background="#252525" DockPanel.Dock="Top" Height="25">
+        <Border Background="#252525" DockPanel.Dock="Top" Height="25" MouseDown="Border_MouseDown">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -35,11 +35,13 @@
         </Border>
 
         <StackPanel Name="LeftBar" Orientation="Vertical" DockPanel.Dock="Left">
+            <Frame x:Name="Frame" Panel.ZIndex="4" NavigationUIVisibility="Hidden" DockPanel.Dock="Left"/>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <!--#region  Menu & Search-->
 
-                <Menu IsMainMenu="True" materialDesign:ShadowAssist.ShadowDepth="Depth5" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Padding="10">
+                <Menu IsMainMenu="True" materialDesign:ShadowAssist.ShadowDepth="Depth5" Width="40" Margin="15 0 0 0"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Padding="0" >
                     <Menu.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel Orientation="Vertical"/>
@@ -47,11 +49,21 @@
                     </Menu.ItemsPanel>
 
 
-                    <MenuItem  Height="20" Padding="0" Margin="15,0,47,0">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource Secondary}" 
-                                                     Width="20" Height="20" />
-                        </MenuItem.Icon>
+                    <MenuItem  HorizontalAlignment="Center" Height="30" Width="50" Padding="0 0 0 0" Background="{StaticResource MainColor}" Foreground="White">
+                        <MenuItem.Header>
+                            <materialDesign:PackIcon Kind="HamburgerMenu" Margin="9,0,0,0" />
+                        </MenuItem.Header>
+                        <MenuItem Background="{StaticResource MainColor}" Click="MenuItemContacts_Click">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="AccountOutline" />
+                            </MenuItem.Icon>
+                            <MenuItem.Header>Contacts</MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem Padding="0" Click="FooterMenuItem_Click">
+                            <MenuItem.Header>
+                                <Label Foreground="{StaticResource Secondary}" HorizontalAlignment="Center">KC WEB 1.0</Label>
+                            </MenuItem.Header>
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
 
@@ -66,35 +78,29 @@
                     </Button>
 
                     <TextBox Grid.Column="1" Foreground="White" materialDesign:HintAssist.Hint="Search" 
-                    MinWidth="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" />
+                    Width="220" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" />
 
                 </Grid>
 
                 <!--#endregion-->
             </StackPanel>
 
-            <ListView Background="Transparent" Margin="0 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}"
-                      ItemContainerStyle="{StaticResource UserCard}" SelectionMode="Single">
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
-                <ListViewItem></ListViewItem>
+            <StackPanel Orientation="Horizontal"  Margin="4">
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonBottom}" Margin="4" IsChecked="True" Content="FIRST" BorderBrush="#8471dc"/>
+            </StackPanel>
+
+            <ListView Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" 
+                      ItemsSource="{Binding Chats}"
+                        ItemTemplate="{StaticResource ChatDataCard}"
+                      SelectionMode="Single" >
             </ListView>
 
         </StackPanel>
 
-        <Frame x:Name="Frame" Panel.ZIndex="2" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="TempAddUser" Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}"
-                    ToolTip="MaterialDesignFloatingActionSecondaryLightButton" 
+        <Button  Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}" Background="{StaticResource Selected}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                     Panel.ZIndex="3"
-                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-70 0 0 5" >
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-70 0 0 20" >
             <materialDesign:PackIcon  Kind="Pencil"/>
         </Button>
 

@@ -3,11 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:WpfTelegram"
       mc:Ignorable="d" 
       Background="#252525"
-      d:DesignHeight="420" d:DesignWidth="540"
+    Width="auto" Height="250"
       Title="AddUserPage">
+    <!--Height="{Binding SizeWindow, Mode=OneWay}"-->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +26,7 @@
 
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -40,13 +42,40 @@
                              Content="ADD" Foreground="White"  />
                         </Border>
                     </ControlTemplate>
-                    
+
                 </Button.Template>
 
             </Button>
 
         </Grid>
-        <Image></Image>
 
+        <Ellipse Grid.Row="1" Grid.RowSpan="2" x:Name="PP" Width="200" Margin="15 0 15 0">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="https://mysalonsoftware.co.za/wp-content/uploads/2019/08/avatar-user-hacker-3830b32ad9e0802c-512x512.png"></ImageBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <TextBox Grid.Column="2" Grid.Row="1" 
+        Foreground="White" Name="FirstName"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+        materialDesign:HintAssist.Hint="First Name (required)"
+        materialDesign:HintAssist.Background="{StaticResource MainColor}"     
+        VerticalAlignment="Center" Background="Transparent" />
+
+        <TextBox Grid.Column="2" Grid.Row="2" 
+        Foreground="White" Name="LastName"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+        materialDesign:HintAssist.Background="{StaticResource MainColor}"   
+        materialDesign:HintAssist.Hint="Last Name (optional)"
+        VerticalAlignment="Center" />
+
+        <TextBox Grid.ColumnSpan="2" Grid.Row="3" 
+        Foreground="White" Name="Phone"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+        materialDesign:HintAssist.Background="{StaticResource MainColor}"   
+        materialDesign:TextFieldAssist.PrefixText="+994 " 
+        materialDesign:HintAssist.Hint="Phone Number"
+        VerticalAlignment="Center" />
+        
     </Grid>
 </Page>

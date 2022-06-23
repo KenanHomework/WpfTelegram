@@ -12,29 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfTelegram.Data;
+using WpfTelegram.Models;
 
-namespace WpfTelegram
+namespace WpfTelegram.Pages
 {
     /// <summary>
-    /// Interaction logic for AddUserPage.xaml
+    /// Interaction logic for ContactsPage.xaml
     /// </summary>
-    public partial class AddUserPage : Page
+    public partial class ContactsPage : Page
     {
-        public AddUserPage()
+        public ContactsPage()
         {
             InitializeComponent();
         }
 
-        public bool res = false;
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void AddUser_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
+            var addUser = new AddUserPage();
+            Frame.Navigate(addUser);
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Visibility = Visibility.Collapsed;
         }
     }
 }

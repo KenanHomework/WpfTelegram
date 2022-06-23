@@ -8,11 +8,14 @@ namespace WpfTelegram.Models
 {
     public class Message
     {
-        public Message(string text, bool writedByContact)
+        public Message(string text, DateTime time, bool writedByContact = false)
         {
+            Time = time;
             Text = text;
             WritedByContact = writedByContact;
         }
+
+        public DateTime Time { get; set; }
 
         public string Text { get; set; }
 
