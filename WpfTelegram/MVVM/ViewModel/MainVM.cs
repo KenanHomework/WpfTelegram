@@ -1,16 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfTelegram.Commands;
+using WpfTelegram.Models;
 
 namespace WpfTelegram.MVVM.ViewModel
 {
     public class MainVM : DependencyObject
     {
+        public ObservableCollection<Contact> Chats { get; set; } = new()
+        {
+            new Contact("Kenan", "0552765909")
+            {
+                Messages ={
+                    new("Salam     ",DateTime.Now, true),
+                    new("asdsad     ",DateTime.Now, true),
+                    new("d asdasdasdqwewqe",DateTime.Now, true),
+                    new("Salam     ",DateTime.Now, true),
+                    new("Salam ",DateTime.Now, false),
+                    new("qweqwewqe     ",DateTime.Now, true),
+                    new("Salam     ",DateTime.Now, true),
+                    new("qwe     ",DateTime.Now, false)
+                }
+            },
+            new Contact("Filankes", "0552765909")
+            {
+                Messages ={
+                    new("Salam ",DateTime.Now,true),
+                    new("asdsad ",DateTime.Now,true),
+                    new("d asdasdasdqwewqe",DateTime.Now, true),
+                    new("Saasd",DateTime.Now, true),
+                    new("Salam ",DateTime.Now, false),
+                    new("qweqwewqe ",DateTime.Now, true),
+                    new("Salam ",DateTime.Now, true),
+                    new("qwe ",DateTime.Now, false)
+                }
+            }
+        };
+
+
         public int SizeWindow
         {
             get { return (int)GetValue(SizeWindowProperty); }

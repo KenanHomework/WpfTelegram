@@ -36,30 +36,6 @@ namespace WpfTelegram.Data
                 } }
         };
 
-        public static ObservableCollection<Contact> Chats { get; set; } = new()
-              {
-            new Contact("Kenan","0552765909"){
-            Messages={
-                    new("Salam     ",DateTime.Now, true),
-                    new("asdsad     ",DateTime.Now, true),
-                    new("d asdasdasdqwewqe",DateTime.Now, true),
-                    new("Salam     ",DateTime.Now, true),
-                    new("Salam ",DateTime.Now, false),
-                    new("qweqwewqe     ",DateTime.Now, true),
-                    new("Salam     ",DateTime.Now, true),
-                    new("qwe     ",DateTime.Now, false)
-                } },
-            new Contact("Filankes","0552765909"){
-            Messages={
-                    new("Salam ",DateTime.Now,true),
-                    new("asdsad ",DateTime.Now,true),
-                    new("d asdasdasdqwewqe",DateTime.Now, true),
-                    new("Saasd",DateTime.Now, true),
-                    new("Salam ",DateTime.Now, false),
-                    new("qweqwewqe ",DateTime.Now, true),
-                    new("Salam ",DateTime.Now, true),
-                    new("qwe ",DateTime.Now, false)
-                } }
-        };
+        
     }
 }

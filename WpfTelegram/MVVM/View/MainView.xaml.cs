@@ -33,7 +33,6 @@ namespace WpfTelegram
             var mainVM = new MainVM();
             mainVM.SizeWindow = 500;
             DataContext = mainVM;
-            List.ItemsSource = DataGeneral.Chats;
         }
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)

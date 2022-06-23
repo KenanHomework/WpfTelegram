@@ -8,7 +8,6 @@
         mc:Ignorable="d"  Background="{DynamicResource MainColor}" WindowStartupLocation="CenterScreen"
          MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=TwoWay}" Width="850" AllowsTransparency="True">
     <DockPanel>
-
         <Border Background="#252525" DockPanel.Dock="Top" Height="25" MouseDown="Border_MouseDown">
             <Grid>
                 <Grid.ColumnDefinitions>
