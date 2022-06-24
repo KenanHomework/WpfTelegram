@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfTelegram.MVVM.View" WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Background="{StaticResource MainColor}" WindowStyle="None" ResizeMode="NoResize"
-        Title="AddUserView" Height="250" Width="350">
+        Title="AddUserView" Height="220" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -22,19 +22,19 @@
 
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="Gray" FontSize="10" VerticalAlignment="Center" Content="X" FontWeight="Bold" Command="{Binding CloseCommand}" />
+            <Button Background="Transparent" BorderThickness="0"  Foreground="Gray" FontSize="10" VerticalAlignment="Center" Content="X" FontWeight="Bold" Command="{Binding CloseCommand}" />
 
-            <Label Grid.Column="1"  Foreground="White" VerticalAlignment="Center" FontWeight="Bold" FontSize="25" Margin="20 0" Width="300" 
+            <Label Grid.Column="1"  Foreground="White" VerticalAlignment="Center" FontWeight="Bold" FontSize="25" Margin="5 0" 
                    Content="Add Contact"/>
             <Button Grid.Column="2" Background="{StaticResource Selected}" BorderThickness="0"  Foreground="Gray" FontSize="10" VerticalAlignment="Center" Content="ADD" FontWeight="Bold" Command="{Binding AddCommand}" >
                 <Button.Template>
                     <ControlTemplate>
                         <Border Background="{StaticResource Selected}" CornerRadius="10" Margin="10 0">
-                            <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" 
+                            <Label VerticalAlignment="Center" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" 
                              Content="ADD" Foreground="White"  />
                         </Border>
                     </ControlTemplate>
