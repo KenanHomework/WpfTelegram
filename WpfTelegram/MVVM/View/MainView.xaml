@@ -4,7 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfTelegram" ResizeMode="CanResizeWithGrip" WindowStyle="None"
+        xmlns:local="clr-namespace:WpfTelegram" xmlns:usercontrols="clr-namespace:WpfTelegram.UserControls" ResizeMode="CanResizeWithGrip" WindowStyle="None"
         mc:Ignorable="d"  Background="{DynamicResource MainColor}" WindowStartupLocation="CenterScreen"
          MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=TwoWay}" Width="850" AllowsTransparency="True">
     <DockPanel>
@@ -90,7 +90,7 @@
             <ListView Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" 
                       ItemsSource="{Binding Chats,Mode=TwoWay}"
                       ItemContainerStyle="{StaticResource ChatCard}"
-                      SelectionMode="Single" >
+                      SelectionMode="Single" SelectionChanged="List_SelectionChanged" >
             </ListView>
 
         </StackPanel>
@@ -101,6 +101,8 @@
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-70 0 0 20" >
             <materialDesign:PackIcon  Kind="Pencil"/>
         </Button>
+
+        <usercontrols:ChatPage x:Name="ChatPage" DockPanel.Dock="Right"/>
 
     </DockPanel>
 </Window>

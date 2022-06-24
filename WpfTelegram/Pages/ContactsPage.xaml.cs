@@ -36,10 +36,8 @@ namespace WpfTelegram.Pages
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
-            //var addUser = new AddUserPage(this);
-            //Frame.Navigate(addUser);
-            AddUserView addUserView = new ();
-            if(addUserView.ShowDialog() == true)
+            AddUserView addUserView = new();
+            if (addUserView.ShowDialog() == true)
             {
                 source.mainVM.AllContacts.Add(addUserView.Source.Contact);
             }
@@ -52,6 +50,13 @@ namespace WpfTelegram.Pages
             source.LeftBar.Visibility = Visibility.Visible;
             source.EditButton.Visibility = Visibility.Visible;
             Visibility = Visibility.Collapsed;
+        }
+
+        private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            source.mainVM.Chats.Add((Contact)List.SelectedItem);
+            source.List.SelectedItem = List.SelectedItem;
+            Button_Click(new(), new());
         }
     }
 }

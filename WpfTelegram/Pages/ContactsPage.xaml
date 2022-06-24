@@ -32,8 +32,7 @@
 
             <!--#endregion-->
         </StackPanel>
-        <ListView x:Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}"
-                      ItemContainerStyle="{StaticResource ContactCard}" SelectionMode="Single" >
+        <ListView x:Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" ItemContainerStyle="{StaticResource ContactCard}" SelectionMode="Single" SelectionChanged="List_SelectionChanged" >
         </ListView>
 
         <Button x:Name="AddUser" Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}"
