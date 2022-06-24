@@ -39,7 +39,10 @@ namespace WpfTelegram.Pages
             //var addUser = new AddUserPage(this);
             //Frame.Navigate(addUser);
             AddUserView addUserView = new ();
-            addUserView.Show();
+            if(addUserView.ShowDialog() == true)
+            {
+                source.mainVM.AllContacts.Add(addUserView.Source.Contact);
+            }
         }
 
         public MainWindow source = new();

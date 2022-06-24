@@ -102,7 +102,5 @@
             <materialDesign:PackIcon  Kind="Pencil"/>
         </Button>
 
-        <!--<Image Source="https://eurasianet.org/sites/default/files/styles/article/public/2022-02/30678230936_9f403fcb2d_k.jpg?itok=J68l79xv"/>-->
-
     </DockPanel>
 </Window>

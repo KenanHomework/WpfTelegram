@@ -23,8 +23,10 @@ namespace WpfTelegram.MVVM.View
         public AddUserView()
         {
             InitializeComponent();
-            DataContext = new AddUserVM(this);
+            Source = new AddUserVM(this);
+            DataContext = Source;
         }
+        public AddUserVM Source { get; set; }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

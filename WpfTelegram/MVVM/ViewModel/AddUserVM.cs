@@ -45,29 +45,26 @@ namespace WpfTelegram.MVVM.ViewModel
         public static readonly DependencyProperty PhoneNumberProperty =
             DependencyProperty.Register("PhoneNumber", typeof(string), typeof(AddUserVM));
 
-        RelayCommand AddCommand;
-        RelayCommand CloseCommand;
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand CloseCommand { get; set; }
 
         public AddUserVM(AddUserView window)
         {
-            Name = string.Empty;
-            LastName = string.Empty;
-            PhoneNumber = string.Empty;
             AddCommand = new
             (
                 e =>
                 {
-                    Contact = new(Name + LastName, PhoneNumber);
-                    //Contact = new(Name + LastName,"055");
+                    Contact = new($"{Name} {LastName}", PhoneNumber);
                     window.DialogResult = true;
                     window.Close();
                 }
-            , new(e => !string.IsNullOrWhiteSpace(Name)));
+            , new(e => !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(PhoneNumber)));
 
             CloseCommand = new(
                 e =>
                 {
                     window.DialogResult = false;
+                    window.Close();
                 }
                 );
         }
