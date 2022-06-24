@@ -7,8 +7,7 @@
       mc:Ignorable="d" 
       Height="{Binding SizeWindow, Mode=OneWay}" Width="auto"
       Title="ContactsPage">
-    <StackPanel Name="LeftBar" Orientation="Vertical" DockPanel.Dock="Left">
-        <Frame x:Name="Frame" Panel.ZIndex="4" NavigationUIVisibility="Hidden" DockPanel.Dock="Left"/>
+    <StackPanel Orientation="Vertical" Width="350">
 
         <StackPanel Grid.Column="0" Orientation="Horizontal">
             <!--#region Search -->
@@ -33,23 +32,16 @@
 
             <!--#endregion-->
         </StackPanel>
-
-        <ListView Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" ItemsSource="{Binding Contacts}"
+        <ListView x:Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}"
                       ItemContainerStyle="{StaticResource ContactCard}" SelectionMode="Single" >
-            <ListViewItem></ListViewItem>
         </ListView>
 
         <Button x:Name="AddUser" Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}"
                     ToolTip="Add Contact" Background="{StaticResource Selected}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Panel.ZIndex="3" Click="AddUser_Click"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 20"  >
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 50 20"  >
             <Label Foreground="White" FontWeight="Bold" FontSize="30">+</Label>
         </Button>
-
-
     </StackPanel>
-
-
-
 </Page>

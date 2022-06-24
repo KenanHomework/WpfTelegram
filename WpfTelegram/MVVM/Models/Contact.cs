@@ -30,8 +30,9 @@ namespace WpfTelegram.Models
         public bool NoChat => Messages.Count == 0;
 
         public string Phone { get; set; }
-
         public string Lastseen { get; set; } = DateTime.Now.ToShortTimeString();
+
+        public string LastMessageTime  => Messages.Last().Time.ToShortTimeString();
 
         public ObservableCollection<Message> Messages { get; set; } = new();
 

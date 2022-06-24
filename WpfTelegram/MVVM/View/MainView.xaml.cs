@@ -30,10 +30,11 @@ namespace WpfTelegram
         public MainWindow()
         {
             InitializeComponent();
-            var mainVM = new MainVM();
             mainVM.SizeWindow = 500;
             DataContext = mainVM;
         }
+
+        public MainVM mainVM = new();
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +79,8 @@ namespace WpfTelegram
 
         private void MenuItemContacts_Click(object sender, RoutedEventArgs e)
         {
-            var page_ = new ContactsPage();
+            var page_ = new ContactsPage(this);
+            //page_.DataContext = ;
             Frame.Navigate(page_);
         }
     }
