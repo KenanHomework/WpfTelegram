@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfTelegram.Models;
+using WpfTelegram.MVVM.ViewModel;
 
 namespace WpfTelegram.UserControls
 {
@@ -25,17 +27,31 @@ namespace WpfTelegram.UserControls
         public ChatPage()
         {
             InitializeComponent();
+            ToggleButton.delegateOfClick += ToggleButton_Click;
         }
 
-
-        public Contact Contact
+        private void MenuItemDeleteChat_Click(object sender, RoutedEventArgs e)
         {
-            get { return (Contact)GetValue(ContactProperty); }
-            set { SetValue(ContactProperty, value); }
+            MainVM.Chats.Remove((Contact)DataContext);
         }
 
-        // Using a DependencyProperty as the backing store for Contact.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ContactProperty =
-            DependencyProperty.Register("Contact", typeof(Contact), typeof(ChatPage));
+        public MainWindow Window { get; set; }
+
+        private void MessageWriteBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (MessageWriteBox.Text.Length == 0)
+                ToggleButton.Icon.Kind = PackIconKind.Microphone;
+            else
+                ToggleButton.Icon.Kind = PackIconKind.Send;
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ToggleButton.Icon.Kind == PackIconKind.Send)
+            {
+                MainVM.AddMessage((Contact)DataContext, new Message(MessageWriteBox.Text, DateTime.Now, true));
+                Window.List.ItemsSource = MainVM.Chats;
+            }
+        }
     }
 }

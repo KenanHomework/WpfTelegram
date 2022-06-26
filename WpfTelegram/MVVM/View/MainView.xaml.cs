@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using WpfTelegram.Models;
+using WpfTelegram.Services;
 using System.Windows.Shapes;
 using WpfTelegram.MVVM.ViewModel;
 using WpfTelegram.Pages;
@@ -30,8 +31,9 @@ namespace WpfTelegram
         public MainWindow()
         {
             InitializeComponent();
-            mainVM.SizeWindow = 500;
             DataContext = mainVM;
+            ChatPage.Window = this;
+            MainVM.Get();
         }
 
         public MainVM mainVM = new();
@@ -54,6 +56,7 @@ namespace WpfTelegram
                             Application.Current.MainWindow.WindowState = WindowState.Maximized;
                         break;
                     case "X":
+                        MainVM.Save();
                         Application.Current.Shutdown();
                         break;
                     default:
@@ -86,7 +89,7 @@ namespace WpfTelegram
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ChatPage.Contact = (Contact)List.SelectedItem;
+            ChatPage.DataContext = (Contact)List.SelectedItem;
         }
     }
 }

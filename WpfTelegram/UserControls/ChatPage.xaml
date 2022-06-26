@@ -3,38 +3,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfTelegram.UserControls"
-             mc:Ignorable="d"  Background="{StaticResource MainColor}"
-             Width="500" Height="500"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel>
-        <Border Height="50" DockPanel.Dock="Top" >
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Border x:Name="BorderCard" Grid.Column="0"
+             xmlns:local="clr-namespace:WpfTelegram.UserControls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Name="This"
+             mc:Ignorable="d" 
+             MinWidth="500" MinHeight="500" Height="auto" Width="auto"
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <UserControl.Background>
+        <ImageBrush ImageSource="https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/BG_N4-scaled.jpg"></ImageBrush>
+    </UserControl.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Height="50" DockPanel.Dock="Top" Margin="0"
+                   Background="{StaticResource MainColor}" >
+            <Border Width="1" Height="50" Background="#111111"></Border>
+            <Border x:Name="BorderCard" Grid.Column="0" DockPanel.Dock="Left"
                  Background="Transparent" CornerRadius="5">
-                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Background="Transparent">
-                        <Ellipse x:Name="PP" Height="50" Width="50" Margin="0 0 15 0">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ElementName=Contact, Path=SourceOfPP}"></ImageBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <StackPanel Orientation="Vertical" Background="Transparent" Width="auto">
-                            <TextBlock x:Name="UserName" Foreground="White" Height="20"  VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding ElementName=Contact, Mode=OneWay, Path=Username}"></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Background="Transparent">
+                    <Ellipse x:Name="PP" Height="50" Width="50" Margin="0 0 15 0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding SourceOfPP}"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <StackPanel Orientation="Vertical" Background="Transparent" Width="auto">
+                        <TextBlock x:Name="UserName" Foreground="White" Height="20"  VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding Username}"></TextBlock>
 
-                            <TextBlock x:Name="LastSeen"  Foreground="{StaticResource Secondary}" Height="20" Width="auto" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding ElementName=Contact, Mode=OneWay, Path=Lastseen}" ></TextBlock>
-                        </StackPanel>
+                        <TextBlock x:Name="LastSeen"  Foreground="{StaticResource Secondary}" Height="20" Width="auto" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding Lastseen}" ></TextBlock>
                     </StackPanel>
-                </Border>
-            </Grid>
+                </StackPanel>
+            </Border>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" 
+                HorizontalAlignment="Right">
+                <Button Background="Transparent" BorderThickness="0">
+                    <materialDesign:PackIcon Kind="Magnify" />
+                </Button>
 
+                <Menu IsMainMenu="True" materialDesign:ShadowAssist.ShadowDepth="Depth5" Width="40" Margin="15 0 0 0"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Padding="0" >
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+
+
+                    <MenuItem  HorizontalAlignment="Center" Height="30" Width="50" Padding="10 0 0 0" Background="{StaticResource MainColor}" Foreground="White">
+                        <MenuItem.Header>
+                            <materialDesign:PackIcon HorizontalAlignment="Center" Kind="DotsVertical" Margin="9,0,0,0" />
+                        </MenuItem.Header>
+
+                        <MenuItem Foreground="#ff595a"  Background="{StaticResource MainColor}" Click="MenuItemDeleteChat_Click">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="AccountOutline" />
+                            </MenuItem.Icon>
+                            <MenuItem.Header>Delete Chat</MenuItem.Header>
+                        </MenuItem>
+
+                    </MenuItem>
+                </Menu>
+
+            </StackPanel>
+        </DockPanel>
+        <Border Grid.Row="1" >
+            <ListView   Name="List" SelectionMode="Single"
+            Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" 
+            ItemsSource="{Binding Messages,Mode=TwoWay}"
+            Margin="10" ItemContainerStyle="{StaticResource MessageCard}">
+            </ListView>
         </Border>
-        <StackPanel>
 
-        </StackPanel>
+        <Grid Grid.Row="2" Margin="0 0 0 25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-    </DockPanel>
+            <Border  Height="40"  Background="{StaticResource MainColor}"
+            CornerRadius="15,15,0,15"  Margin="10 0" Padding="4" BorderBrush="Black" MinWidth="200" MaxWidth="500" Grid.Column="1" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:PackIcon Kind="EmoticonHappyOutline" HorizontalAlignment="Center"
+                Foreground="{StaticResource Secondary}" Width="40" Height="30" />
+
+                    <TextBox x:Name="MessageWriteBox"  Grid.Column="1" Foreground="{StaticResource Secondary}"
+                             TextChanged="MessageWriteBox_TextChanged"
+                materialDesign:HintAssist.Hint="Comment" FontSize="10">
+                    </TextBox>
+
+                    <materialDesign:PackIcon Kind="Paperclip"  Grid.Column="2" HorizontalAlignment="Center"
+                Foreground="{StaticResource Secondary}" Width="40" Height="30" />
+                </Grid>
+
+            </Border>
+
+            <local:BackControlToggleButton x:Name="ToggleButton" HorizontalAlignment="Left" Margin="10 0"  Grid.Column="2"/>
+
+        </Grid>
+
+    </Grid>
 </UserControl>

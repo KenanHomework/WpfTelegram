@@ -21,6 +21,7 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="Styles/Scrollbar.xaml"/>
                 <ResourceDictionary Source="Styles/ChatCard.xaml"/>
+                <ResourceDictionary Source="Styles/MessageCard.xaml"/>
                 <ResourceDictionary Source="Styles/ContactCard.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

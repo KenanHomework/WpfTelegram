@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTelegram" xmlns:usercontrols="clr-namespace:WpfTelegram.UserControls" ResizeMode="CanResizeWithGrip" WindowStyle="None"
         mc:Ignorable="d"  Background="{DynamicResource MainColor}" WindowStartupLocation="CenterScreen"
-         MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=TwoWay}" Width="850" AllowsTransparency="True">
+         MinHeight="500" MinWidth="850" Height="{Binding SizeWindow, Mode=OneWayToSource}" Width="850" AllowsTransparency="True">
     <DockPanel>
         <Border Background="#252525" DockPanel.Dock="Top" Height="25" MouseDown="Border_MouseDown">
             <Grid>
@@ -20,7 +20,8 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Foreground="Gray" Margin="2 0" FontWeight="SemiBold">Telegram</Label>
+                <Label Grid.Column="0" Foreground="Gray" Margin="2 0" FontWeight="SemiBold" 
+                       >KC WEB</Label>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="Gray" VerticalAlignment="Center" Content="_" Padding="0 0 0 8" Click="ResizeButton_Click"/>
@@ -86,9 +87,9 @@
             <StackPanel Orientation="Horizontal"  Margin="4">
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonBottom}" Margin="4" IsChecked="True" Content="FIRST" BorderBrush="#8471dc"/>
             </StackPanel>
-
+            <Border Width="{Binding SizeWindow, Mode=OneWay}" Height="1" Background="#111111"></Border>
             <ListView Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" 
-                      ItemsSource="{Binding Chats,Mode=TwoWay}"
+                      ItemsSource="{Binding Chats,Mode=OneWay}"
                       ItemContainerStyle="{StaticResource ChatCard}"
                       SelectionMode="Single" SelectionChanged="List_SelectionChanged" >
             </ListView>

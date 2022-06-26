@@ -15,7 +15,7 @@ namespace WpfTelegram.Models
             WritedByContact = writedByContact;
         }
 
-        public DateTime Time { get; set; }
+        public DateTime Time { get; set; } = DateTime.Now;
 
         public string Text { get; set; }
 

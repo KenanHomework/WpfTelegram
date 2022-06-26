@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WpfTelegram.Data;
 using WpfTelegram.Models;
 using WpfTelegram.MVVM.View;
+using WpfTelegram.MVVM.ViewModel;
 
 namespace WpfTelegram.Pages
 {
@@ -29,7 +30,7 @@ namespace WpfTelegram.Pages
             InitializeComponent();
             DataContext = _source;
             source = _source;
-            List.ItemsSource = source.mainVM.AllContacts;
+            List.ItemsSource = MainVM.AllContacts;
             source.LeftBar.Visibility = Visibility.Collapsed;
             source.EditButton.Visibility = Visibility.Collapsed;
         }
@@ -39,7 +40,7 @@ namespace WpfTelegram.Pages
             AddUserView addUserView = new();
             if (addUserView.ShowDialog() == true)
             {
-                source.mainVM.AllContacts.Add(addUserView.Source.Contact);
+                MainVM.AllContacts.Add(addUserView.Source.Contact);
             }
         }
 
@@ -54,8 +55,9 @@ namespace WpfTelegram.Pages
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            source.mainVM.Chats.Add((Contact)List.SelectedItem);
-            source.List.SelectedItem = List.SelectedItem;
+            MainVM.Chats.Add(MainVM.AllContacts[List.SelectedIndex]);
+            source.List.ItemsSource = MainVM.AllContacts;
+            source.List.SelectedIndex = MainVM.AllContacts.Count - 1;
             Button_Click(new(), new());
         }
     }

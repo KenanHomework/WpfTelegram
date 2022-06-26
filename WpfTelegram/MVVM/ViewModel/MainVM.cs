@@ -8,12 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfTelegram.Commands;
 using WpfTelegram.Models;
+using WpfTelegram.Services;
 
 namespace WpfTelegram.MVVM.ViewModel
 {
     public class MainVM : DependencyObject
     {
-        public ObservableCollection<Contact> Chats { get; set; } = new()
+        public static ObservableCollection<Contact> Chats { get; set; } = new()
         {
             new Contact("Kenan", "0552765909")
             {
@@ -141,7 +142,7 @@ namespace WpfTelegram.MVVM.ViewModel
             }
         };
 
-        public  ObservableCollection<Contact> AllContacts { get; set; } = new()
+        public static ObservableCollection<Contact> AllContacts { get; set; } = new()
         {
             new Contact("Kenan","0552765909"){
             Messages={
@@ -167,21 +168,59 @@ namespace WpfTelegram.MVVM.ViewModel
                 } }
         };
 
-        public void Add(Contact contact) => AllContacts.Add(contact);
+        public static void Add(Contact contact) => AllContacts.Add(contact);
+
+        public static void AddMessage(Contact contact, Message message)
+        {
+            int index = Chats.IndexOf(contact);
+            Chats[index].Messages.Add(message);
+            Chats[index].Calculate();
+
+        }
+
+        public static void Save()
+        {
+            ServicesOfJSON.Write("allContacts.json", AllContacts);
+            ServicesOfJSON.Write("chats.json", Chats);
+        }
+
+        public static void Get()
+        {
+            try
+            {
+                AllContacts = ServicesOfJSON.Read<ObservableCollection<Contact>>("allContacts.json");
+            }
+            catch (Exception)
+            {
+
+                AllContacts = new();
+            }
+            try
+            {
+                Chats = ServicesOfJSON.Read<ObservableCollection<Contact>>("chats.json");
+            }
+            catch (Exception)
+            {
+                Chats = new();
+            }
+        }
 
         public int SizeWindow
         {
-            get { return (int)GetValue(SizeWindowProperty); }
+            get
+            {
+                return -200 + (int)GetValue(SizeWindowProperty);
+            }
             set { SetValue(SizeWindowProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for SizeWindow.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SizeWindowProperty =
-            DependencyProperty.Register("SizeWindow", typeof(int), typeof(MainVM), new PropertyMetadata(0));
+            DependencyProperty.Register("SizeWindow", typeof(int), typeof(MainVM));
 
         public MainVM()
         {
-            
+
         }
     }
 }
