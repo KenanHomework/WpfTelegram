@@ -89,7 +89,7 @@
             </StackPanel>
             <Border Width="{Binding SizeWindow, Mode=OneWay}" Height="1" Background="#111111"></Border>
             <ListView Name="List" Background="Transparent" Margin="5 10 0 0" Width="auto" Height="{Binding SizeWindow, Mode=OneWay}" 
-                      ItemsSource="{Binding Chats,Mode=OneWay}"
+                      ItemsSource="{Binding Chats,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                       ItemContainerStyle="{StaticResource ChatCard}"
                       SelectionMode="Single" SelectionChanged="List_SelectionChanged" >
             </ListView>

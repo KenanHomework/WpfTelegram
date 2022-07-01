@@ -57,7 +57,7 @@ namespace WpfTelegram.Pages
         {
             MainVM.Chats.Add(MainVM.AllContacts[List.SelectedIndex]);
             source.List.ItemsSource = MainVM.AllContacts;
-            source.List.SelectedIndex = MainVM.AllContacts.Count - 1;
+            source.List.SelectedIndex = MainVM.AllContacts.IndexOf(List.SelectedItem as Contact);
             Button_Click(new(), new());
         }
     }

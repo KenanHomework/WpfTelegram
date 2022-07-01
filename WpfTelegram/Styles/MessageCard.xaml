@@ -1,27 +1,70 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:WpfTelegram.Converters">
     <Style x:Key="MessageCard" TargetType="ListBoxItem">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding WritedByContact}" Value="true">
-                <Setter Property="Background" Value="{StaticResource Selected}"></Setter>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding WritedByContact}" Value="false">
-                <Setter Property="Background" Value="{StaticResource MainColor}"></Setter>
-            </DataTrigger>
-        </Style.Triggers>
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="MaxWidth" Value="500"></Setter>
+        <Setter Property="Width" Value="auto"></Setter>
         <Setter Property="Margin" Value="10 20"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Border Background="{TemplateBinding Background}">
-                        <DockPanel>
-                            <TextBlock DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding Text,Mode=OneWay}"></TextBlock>
-                            <TextBlock DockPanel.Dock="Bottom" Width="auto" TextWrapping="Wrap" Text="{Binding Time,Mode=OneWay}"></TextBlock>
-                        </DockPanel>
+                    <Grid Visibility="Visible">
 
-                    </Border>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--Chat Message Text Bubble-->
+
+                        <Grid  HorizontalAlignment="{Binding Alignment}" x:Name="GeneralGrid">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--Speech bubble rectangle-->
+
+                            <Border CornerRadius="10"
+                                Padding="15"
+                                Background="{Binding WritedByContact, Converter={local:WritedByContactToBackgroundConverter}}"
+                                >
+
+
+                                <!--Message text-->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Foreground="White" Text="{Binding Text}" />
+
+                                    <TextBlock Text="{Binding MessageTime}" HorizontalAlignment="Right" 
+                                    Foreground="{Binding WritedByContact, Converter={local:WritedByContactToForegroundConverter}}" FontSize="8" VerticalAlignment="Bottom" Margin="10 0 20 0" />
+                                </StackPanel>
+                            </Border>
+
+
+                            <!--Chat bubble anchor-->
+
+                            <Path Grid.Row="1" 
+                              Stroke="Black"
+                              Panel.ZIndex="1"
+                              Margin="15 -1 15 0"
+                              Data="M 0,0 L 10,10 L 20,0 L 0,0" 
+                              StrokeThickness="0"
+                              HorizontalAlignment="{Binding Alignment}"
+                              Fill="{Binding WritedByContact, Converter={local:WritedByContactToBackgroundConverter}}"/>
+
+
+                            <!--Time containers-->
+
+
+
+                            <!--Sent time-->
+
+
+
+                        </Grid>
+
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

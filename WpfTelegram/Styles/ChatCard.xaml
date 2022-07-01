@@ -37,7 +37,7 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <TextBlock x:Name="LastMessage"  Foreground="{TemplateBinding Foreground}" Height="20" Width="155" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding LastMessage,Mode=OneWay}"></TextBlock>
+                                    <TextBlock x:Name="LastMessage"  Foreground="{TemplateBinding Foreground}" Height="20" Width="155" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding LastMessage,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

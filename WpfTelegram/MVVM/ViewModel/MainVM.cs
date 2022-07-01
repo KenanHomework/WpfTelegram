@@ -168,7 +168,10 @@ namespace WpfTelegram.MVVM.ViewModel
                 } }
         };
 
-        public static void Add(Contact contact) => AllContacts.Add(contact);
+        public static void Add(Contact contact)
+        {
+            if (!AllContacts.Contains(contact)) AllContacts.Add(contact);
+        }
 
         public static void AddMessage(Contact contact, Message message)
         {

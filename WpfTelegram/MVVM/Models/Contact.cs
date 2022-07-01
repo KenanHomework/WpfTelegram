@@ -53,13 +53,13 @@ namespace WpfTelegram.Models
             }
         }
 
-        public Message LastMessage
+        public string LastMessage
         {
             get
             {
-                if (!NoChat)
+                if (NoChat)
                     return null;
-                return Messages.Last();
+                return Messages.Last().ToString();
 
             }
         }
@@ -69,7 +69,6 @@ namespace WpfTelegram.Models
         public void Calculate()
         {
             Lastseen = DateTime.Now.ToShortTimeString();
-            var temp = LastMessageTime;
         }
     }
 }

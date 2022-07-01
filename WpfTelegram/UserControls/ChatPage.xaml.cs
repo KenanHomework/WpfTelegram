@@ -22,7 +22,7 @@ namespace WpfTelegram.UserControls
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : UserControl
+    public partial class ChatPage : System.Windows.Controls.UserControl
     {
         public ChatPage()
         {
@@ -32,6 +32,9 @@ namespace WpfTelegram.UserControls
 
         private void MenuItemDeleteChat_Click(object sender, RoutedEventArgs e)
         {
+            ;
+            if (MessageBoxResult.Cancel == MessageBox.Show("Item will be removed. Do you want to continue?", "Delete Chat", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel))
+                return;
             MainVM.Chats.Remove((Contact)DataContext);
         }
 
@@ -50,7 +53,11 @@ namespace WpfTelegram.UserControls
             if (ToggleButton.Icon.Kind == PackIconKind.Send)
             {
                 MainVM.AddMessage((Contact)DataContext, new Message(MessageWriteBox.Text, DateTime.Now, true));
+                int temp = Window.List.SelectedIndex;
+                Window.List.ItemsSource = null;
                 Window.List.ItemsSource = MainVM.Chats;
+                Window.List.SelectedIndex = temp;
+                MessageWriteBox.Text = String.Empty;
             }
         }
     }
