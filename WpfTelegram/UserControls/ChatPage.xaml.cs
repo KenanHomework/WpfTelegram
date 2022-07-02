@@ -57,6 +57,7 @@ namespace WpfTelegram.UserControls
                 Window.List.ItemsSource = null;
                 Window.List.ItemsSource = MainVM.Chats;
                 Window.List.SelectedIndex = temp;
+                List.ScrollIntoView(List.Items[List.Items.Count - 1]);
                 MessageWriteBox.Text = String.Empty;
             }
         }

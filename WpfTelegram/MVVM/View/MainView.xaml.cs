@@ -90,6 +90,8 @@ namespace WpfTelegram
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ChatPage.DataContext = (Contact)List.SelectedItem;
+            ChatPage.List.ScrollIntoView(ChatPage.List.Items[ChatPage.List.Items.Count - 1]);
+
         }
     }
 }
